@@ -1,2 +1,20 @@
-<h1>TP TodoList</h1>
 
+    <h1>TP TodoList</h1>
+    <form (submit) = "create(newItem.value)">
+        <label >
+            Nouvelle tache a faire
+            <input #newItem type="text" placeholder="ENTRER UNE TACHE">
+        </label>   
+    </form>
+
+    <ul *ngIf="obs|async as toDoList ">
+        <li *ngFor="let item of toDoList.items; trackBy:trackById">
+            <input type="checkbox" [ngModel]="item.isDone" (ngModelChange) = "update({isDone:$event}, item)"  >
+            <input type="text" [ngModel]="item.label" >
+            <button (click) = "delete(item)">Supprimer</button>
+        </li>
+    </ul>
+
+<pre>
+    {{obs | async | json}}
+</pre>
