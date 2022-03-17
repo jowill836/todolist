@@ -1,0 +1,25 @@
+<section *ngIf="obsTDL | async as toDoList">
+  <div class="view">
+    <input
+      class="toggle"
+      type="checkbox"
+      name="done"
+      [ngModel]="data.isDone"
+      (ngModelChange)="UPDATE({ isDone: $event }, data)"
+    />
+
+    <label
+      class="texte"
+      [ngModel]="data.label"
+      (dblclick)="UPDATE({ label: data.label }, data)"
+      
+    >
+      {{ data.label }}
+    </label>
+
+    <button class="destroy" (click)="REMOVE(data)"></button>
+  </div>
+  <form (submit)="UPDATE({ label: data.label }, data)">
+    <input #newTextInput name="newTextInput" class="edit" />
+  </form>
+</section>

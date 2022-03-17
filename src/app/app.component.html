@@ -1,4 +1,15 @@
+<app-todo-list></app-todo-list>
 
+<pre>
+    {{obsTDL | async | json}}
+</pre>
+
+
+
+
+
+<!-- 
+<section *ngIf="obsTDL|async as toDoList ">
     <h1>TP TodoList</h1>
     <form (submit) = "create(newItem.value)">
         <label >
@@ -7,7 +18,7 @@
         </label>   
     </form>
 
-    <ul *ngIf="obs|async as toDoList ">
+    <ul>
         <li *ngFor="let item of toDoList.items; trackBy:trackById">
             <input type="checkbox" [ngModel]="item.isDone" (ngModelChange) = "update({isDone:$event}, item)"  >
             <input type="text" [ngModel]="item.label" >
@@ -15,6 +26,8 @@
         </li>
     </ul>
 
-<pre>
-    {{obs | async | json}}
-</pre>
+     <pre>
+        {{obsTDL | async | json}}
+    </pre>
+</section> -->
+    

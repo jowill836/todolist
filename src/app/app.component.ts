@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { TodolistService, TodoItem,} from './todolist.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { TodolistService, TodoItem, TodoList,} from './todolist.service';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +9,22 @@ import { TodolistService, TodoItem,} from './todolist.service';
 })
 export class AppComponent {
   title = 'l3m-tpX-todolist-angular-y2022';
+  readonly obsTDL : Observable<TodoList>;
+
+  
+ 
+   
 
   constructor(private TDLS : TodolistService){
+    this.obsTDL = TDLS.observable;
     
     
   }
 
-  get obs(){
-    return this.TDLS.observable;
-  }
 
   create(...labels: readonly string[]){
     this.TDLS.create(...labels);
+  
   }
 
   delete(...items: readonly TodoItem[]){
@@ -29,6 +33,7 @@ export class AppComponent {
  
   update(data: Partial<TodoItem>, ...items: readonly TodoItem[]){
     this.TDLS.update(data,...items);
+    
   }
 
   trackById(n : number, item : TodoItem): number{
